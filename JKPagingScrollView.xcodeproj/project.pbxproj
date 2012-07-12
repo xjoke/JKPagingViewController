@@ -1,0 +1,296 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		366605EC15AF3C6900FD165F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 366605EB15AF3C6900FD165F /* UIKit.framework */; };
+		366605EE15AF3C6900FD165F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 366605ED15AF3C6900FD165F /* Foundation.framework */; };
+		366605F015AF3C6900FD165F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 366605EF15AF3C6900FD165F /* CoreGraphics.framework */; };
+		366605F615AF3C6900FD165F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 366605F415AF3C6900FD165F /* InfoPlist.strings */; };
+		366605F815AF3C6900FD165F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 366605F715AF3C6900FD165F /* main.m */; };
+		366605FC15AF3C6900FD165F /* JKAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 366605FB15AF3C6900FD165F /* JKAppDelegate.m */; };
+		366605FF15AF3C6900FD165F /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 366605FD15AF3C6900FD165F /* MainStoryboard_iPhone.storyboard */; };
+		3666060215AF3C6900FD165F /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3666060015AF3C6900FD165F /* MainStoryboard_iPad.storyboard */; };
+		3666060515AF3C6A00FD165F /* JKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3666060415AF3C6A00FD165F /* JKViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		366605E715AF3C6900FD165F /* JKPagingScrollView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JKPagingScrollView.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		366605EB15AF3C6900FD165F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		366605ED15AF3C6900FD165F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		366605EF15AF3C6900FD165F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		366605F315AF3C6900FD165F /* JKPagingScrollView-Info.plist */ = {isa = PBXFileReference; path = "JKPagingScrollView-Info.plist"; sourceTree = "<group>"; };
+		366605F515AF3C6900FD165F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		366605F715AF3C6900FD165F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		366605F915AF3C6900FD165F /* JKPagingScrollView-Prefix.pch */ = {isa = PBXFileReference; path = "JKPagingScrollView-Prefix.pch"; sourceTree = "<group>"; };
+		366605FA15AF3C6900FD165F /* JKAppDelegate.h */ = {isa = PBXFileReference; path = JKAppDelegate.h; sourceTree = "<group>"; };
+		366605FB15AF3C6900FD165F /* JKAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JKAppDelegate.m; sourceTree = "<group>"; };
+		366605FE15AF3C6900FD165F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		3666060115AF3C6900FD165F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
+		3666060315AF3C6A00FD165F /* JKViewController.h */ = {isa = PBXFileReference; path = JKViewController.h; sourceTree = "<group>"; };
+		3666060415AF3C6A00FD165F /* JKViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JKViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		366605E415AF3C6900FD165F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				366605EC15AF3C6900FD165F /* UIKit.framework in Frameworks */,
+				366605EE15AF3C6900FD165F /* Foundation.framework in Frameworks */,
+				366605F015AF3C6900FD165F /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		366605DC15AF3C6900FD165F = {
+			isa = PBXGroup;
+			children = (
+				366605F115AF3C6900FD165F /* JKPagingScrollView */,
+				366605EA15AF3C6900FD165F /* Frameworks */,
+				366605E815AF3C6900FD165F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		366605E815AF3C6900FD165F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				366605E715AF3C6900FD165F /* JKPagingScrollView.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		366605EA15AF3C6900FD165F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				366605EB15AF3C6900FD165F /* UIKit.framework */,
+				366605ED15AF3C6900FD165F /* Foundation.framework */,
+				366605EF15AF3C6900FD165F /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		366605F115AF3C6900FD165F /* JKPagingScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				366605FA15AF3C6900FD165F /* JKAppDelegate.h */,
+				366605FB15AF3C6900FD165F /* JKAppDelegate.m */,
+				366605FD15AF3C6900FD165F /* MainStoryboard_iPhone.storyboard */,
+				3666060015AF3C6900FD165F /* MainStoryboard_iPad.storyboard */,
+				3666060315AF3C6A00FD165F /* JKViewController.h */,
+				3666060415AF3C6A00FD165F /* JKViewController.m */,
+				366605F215AF3C6900FD165F /* Supporting Files */,
+			);
+			path = JKPagingScrollView;
+			sourceTree = "<group>";
+		};
+		366605F215AF3C6900FD165F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				366605F315AF3C6900FD165F /* JKPagingScrollView-Info.plist */,
+				366605F415AF3C6900FD165F /* InfoPlist.strings */,
+				366605F715AF3C6900FD165F /* main.m */,
+				366605F915AF3C6900FD165F /* JKPagingScrollView-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		366605E615AF3C6900FD165F /* JKPagingScrollView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3666060815AF3C6A00FD165F /* Build configuration list for PBXNativeTarget "JKPagingScrollView" */;
+			buildPhases = (
+				366605E315AF3C6900FD165F /* Sources */,
+				366605E415AF3C6900FD165F /* Frameworks */,
+				366605E515AF3C6900FD165F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JKPagingScrollView;
+			productName = JKPagingScrollView;
+			productReference = 366605E715AF3C6900FD165F /* JKPagingScrollView.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		366605DE15AF3C6900FD165F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = JK;
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = 366605E115AF3C6900FD165F /* Build configuration list for PBXProject "JKPagingScrollView" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 366605DC15AF3C6900FD165F;
+			productRefGroup = 366605E815AF3C6900FD165F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				366605E615AF3C6900FD165F /* JKPagingScrollView */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		366605E515AF3C6900FD165F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				366605F615AF3C6900FD165F /* InfoPlist.strings in Resources */,
+				366605FF15AF3C6900FD165F /* MainStoryboard_iPhone.storyboard in Resources */,
+				3666060215AF3C6900FD165F /* MainStoryboard_iPad.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		366605E315AF3C6900FD165F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				366605F815AF3C6900FD165F /* main.m in Sources */,
+				366605FC15AF3C6900FD165F /* JKAppDelegate.m in Sources */,
+				3666060515AF3C6A00FD165F /* JKViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		366605F415AF3C6900FD165F /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				366605F515AF3C6900FD165F /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		366605FD15AF3C6900FD165F /* MainStoryboard_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				366605FE15AF3C6900FD165F /* en */,
+			);
+			name = MainStoryboard_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		3666060015AF3C6900FD165F /* MainStoryboard_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3666060115AF3C6900FD165F /* en */,
+			);
+			name = MainStoryboard_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3666060615AF3C6A00FD165F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3666060715AF3C6A00FD165F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3666060915AF3C6A00FD165F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JKPagingScrollView/JKPagingScrollView-Prefix.pch";
+				INFOPLIST_FILE = "JKPagingScrollView/JKPagingScrollView-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		3666060A15AF3C6A00FD165F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JKPagingScrollView/JKPagingScrollView-Prefix.pch";
+				INFOPLIST_FILE = "JKPagingScrollView/JKPagingScrollView-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		366605E115AF3C6900FD165F /* Build configuration list for PBXProject "JKPagingScrollView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3666060615AF3C6A00FD165F /* Debug */,
+				3666060715AF3C6A00FD165F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3666060815AF3C6A00FD165F /* Build configuration list for PBXNativeTarget "JKPagingScrollView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3666060915AF3C6A00FD165F /* Debug */,
+				3666060A15AF3C6A00FD165F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 366605DE15AF3C6900FD165F /* Project object */;
+}
