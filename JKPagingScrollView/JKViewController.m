@@ -2,7 +2,7 @@
 //  JKViewController.m
 //  JKPagingScrollView
 //
-//  Version 1.0
+//  Version 2.0
 //
 //  Created by Keisel Jonas on 12.07.12.
 //  Copyright (c) 2012 Jonas Keisel. All rights reserved.
@@ -11,10 +11,11 @@
 #import "JKViewController.h"
 #import "JKPagingViewController.h"
 
-@interface JKViewController () <JKPagingViewControllerDelegate>
+@interface JKViewController () <JKPagingViewControllerDelegate, JKPagingViewControllerDataSource>
 
 @property (strong, nonatomic) JKPagingViewController *pagingViewController;
 @property (strong, nonatomic) NSMutableArray *colorArray;
+@property (strong, nonatomic) NSMutableArray *viewControllerArray;
 
 @end
 
@@ -22,6 +23,7 @@
 @synthesize pagingView = _pagingView;
 @synthesize pageControl = _pageControl;
 @synthesize colorArray = _colorArray;
+@synthesize viewControllerArray = _viewControllerArray;
 @synthesize pagingViewController = _pagingViewController;
 
 - (UIViewController *)viewControllerWithViewWithBackgroundColour:(UIColor *)colour
@@ -34,13 +36,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	self.pagingViewController = [[JKPagingViewController alloc] initWithView:self.pagingView andPageControl:self.pageControl];
-    self.pagingViewController.spaceBetweenViews = 0;
-    self.pagingViewController.delegate = self;
     self.colorArray = [NSMutableArray arrayWithObjects:[UIColor redColor], [UIColor greenColor], [UIColor blueColor], [UIColor blackColor], [UIColor yellowColor], nil];
-    for (UIColor *colour in self.colorArray)
-        [self.pagingViewController addPageWithViewController:[self viewControllerWithViewWithBackgroundColour:colour]];
-    self.pagingViewController.currentPage = 1;
+    self.viewControllerArray = [NSMutableArray array];
+    
+	self.pagingViewController = [[JKPagingViewController alloc] initWithView:self.pagingView andPageControl:self.pageControl];
+    self.pagingViewController.delegate = self;
+    self.pagingViewController.dataSource = self;
+    
+    for (int i = 0; i < 4; i++)
+        [self.viewControllerArray addObject:[self viewControllerWithViewWithBackgroundColour:[self.colorArray objectAtIndex:self.pagingViewController.numberOfPages % self.colorArray.count]]];
+    [self.pagingViewController reloadPages];
 }
 
 - (void)viewDidUnload
@@ -60,6 +65,16 @@
     }
 }
 
+- (NSUInteger)numberOfPagesInPagingViewController:(JKPagingViewController *)pagingViewController
+{
+    return self.viewControllerArray.count;
+}
+
+- (UIViewController *)pagingViewController:(JKPagingViewController *)pagingViewController viewControllerAtIndex:(NSUInteger)index
+{
+    return [self.viewControllerArray objectAtIndex:index];
+}
+
 - (void)pagingController:(JKPagingViewController *)sender willChangeFromPage:(NSUInteger)from toPage:(NSUInteger)to
 {
     NSLog(@"Changed from page %i to page %i", from, to);
@@ -67,12 +82,14 @@
 
 - (IBAction)remove:(UIButton *)sender 
 {
-    [self.pagingViewController removePageAtIndex:self.pagingViewController.currentPage];
+    [self.viewControllerArray removeObjectAtIndex:self.pagingViewController.currentPage];
+    [self.pagingViewController reloadPages];
 }
 
 - (IBAction)add:(UIBarButtonItem *)sender 
 {
-    [self.pagingViewController addPageWithViewController:[self viewControllerWithViewWithBackgroundColour:[self.colorArray objectAtIndex:self.pagingViewController.numberOfPages % self.colorArray.count]]];
+    [self.viewControllerArray addObject:[self viewControllerWithViewWithBackgroundColour:[self.colorArray objectAtIndex:self.pagingViewController.numberOfPages % self.colorArray.count]]];
+    [self.pagingViewController reloadPages];
 }
 
 - (IBAction)last:(UIBarButtonItem *)sender 

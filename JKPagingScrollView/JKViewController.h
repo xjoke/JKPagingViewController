@@ -2,7 +2,7 @@
 //  JKViewController.h
 //  JKPagingScrollView
 //
-//  Version 1.0
+//  Version 2.0
 //
 //  Created by Keisel Jonas on 12.07.12.
 //  Copyright (c) 2012 Jonas Keisel. All rights reserved.

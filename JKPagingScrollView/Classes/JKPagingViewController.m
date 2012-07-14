@@ -2,7 +2,7 @@
 //  JKPagingViewController.m
 //  JKPagingViewController
 //
-//  Version 1.0
+//  Version 2.0
 //
 //  Created by Keisel Jonas on 12.07.12.
 //  Copyright (c) 2012 Jonas Keisel. All rights reserved.
@@ -48,7 +48,7 @@
 
 #define KEY_PATH_VIEW_FRAME                 @"view.frame"
 #define KEY_PATH_SCROLLVIEW_FRAME           @"scrollView.frame"
-#define KEY_PATH_PAGESARRAY                 @"pagesArray"
+#define KEY_PATH_DATASOURCE                 @"dataSource"
 #define KEY_PATH_PAGECONTROL_CURRENT_PAGE   @"pageControl.currentPage"
 
 @implementation JKPagingViewController
@@ -56,11 +56,11 @@
 #pragma mark Properties
 @synthesize tmpPage = _tmpPage;
 @synthesize delegate = _delegate;
-@synthesize pagesArray = _pagesArray;
+@synthesize dataSource = _dataSource;
 @synthesize scrollView = _scrollView;
 @synthesize pageControl = _pageControl;
 @synthesize usePageControl = _usePageControl;
-@synthesize spaceBetweenViews = _spaceBetweenViews;
+@synthesize spaceBetweenPages = _spaceBetweenPages;
 @synthesize pageControlBeingUsed = _pageControlBeingUsed;
 
 #pragma mark Initialization
@@ -73,7 +73,7 @@
         self.usePageControl = YES;
         [self addObserver:self forKeyPath:KEY_PATH_VIEW_FRAME options:NSKeyValueObservingOptionNew context:nil];
         [self addObserver:self forKeyPath:KEY_PATH_SCROLLVIEW_FRAME options:NSKeyValueObservingOptionNew context:nil];
-        [self addObserver:self forKeyPath:KEY_PATH_PAGESARRAY options:NSKeyValueObservingOptionNew context:nil];
+        [self addObserver:self forKeyPath:KEY_PATH_DATASOURCE options:NSKeyValueObservingOptionNew context:nil];
         [self addObserver:self forKeyPath:KEY_PATH_PAGECONTROL_CURRENT_PAGE options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
         
         self.view = view;
@@ -81,8 +81,6 @@
         self.pageControl = pageControl;
         
         self.scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
-        
-        _pagesArray = [NSMutableArray array];
     
         [self recalculateAll];
     }
@@ -137,32 +135,6 @@
 
 #pragma mark Observation
 
-- (void)willChange:(NSKeyValueChange)changeKind valuesAtIndexes:(NSIndexSet *)indexes forKey:(NSString *)key
-{
-    if ([key isEqualToString:KEY_PATH_PAGESARRAY]) {
-        if (changeKind == NSKeyValueChangeRemoval && indexes.count > 0) {
-            [[self viewControllerAtIndex:[indexes firstIndex]].view removeFromSuperview];
-            NSUInteger old, new; old = new = [indexes firstIndex];
-            if (self.currentPage == old && [self currentPageIsLastPage])
-                new -= 1;
-            if ([self.delegate respondsToSelector:@selector(pagingController:willChangeFromPage:toPage:)]) {
-                [self.delegate pagingController:self willChangeFromPage:old toPage:new];
-            }
-        }
-    }
-}
-
-- (void)didChange:(NSKeyValueChange)changeKind valuesAtIndexes:(NSIndexSet *)indexes forKey:(NSString *)key
-{
-    if ([key isEqualToString:KEY_PATH_PAGESARRAY]) {
-        self.pageControl.numberOfPages = self.pagesArray.count;
-        if (changeKind == NSKeyValueChangeInsertion) {
-            [self.scrollView addSubview:((UIViewController *)[self viewControllerAtIndex:[indexes firstIndex]]).view];
-        }
-        [self recalculateViewControllerFrames];
-    }
-}
-
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if ([keyPath isEqualToString:KEY_PATH_VIEW_FRAME]) {
@@ -172,8 +144,8 @@
     else if ([keyPath isEqualToString:KEY_PATH_SCROLLVIEW_FRAME]) {
         [self recalculateViewControllerFrames];
     }
-    else if ([keyPath isEqualToString:KEY_PATH_PAGESARRAY]) {
-        self.pageControl.numberOfPages = self.pagesArray.count;
+    else if ([keyPath isEqualToString:KEY_PATH_DATASOURCE]) {
+        [self reloadPages];
     }
     else if ([keyPath isEqualToString:KEY_PATH_PAGECONTROL_CURRENT_PAGE]) {
         NSNumber *old = [change objectForKey:@"old"];
@@ -200,14 +172,16 @@
 
 - (void)recalculateViewControllerFrames
 {
-    int i;
-    for (i = 0; i < self.pagesArray.count; i++) {
-        UIViewController *viewController = [self.pagesArray objectAtIndex:i];
+    int i, numberOfPages = self.numberOfPages;
+    for (i = 0; i < numberOfPages; i++) {
+        UIViewController *viewController = [self viewControllerAtIndex:i];
+        if ([viewController.view isSubviewFromView:self.scrollView] == NO)
+            [self.scrollView addSubview:viewController.view];
         CGRect newFrame = self.scrollView.frame;
-        newFrame.origin.x = i*self.scrollView.bounds.size.width + i*self.spaceBetweenViews;
+        newFrame.origin.x = i*self.scrollView.bounds.size.width + i*self.spaceBetweenPages;
         viewController.view.frame = newFrame;
     }
-    self.scrollView.contentSize = CGSizeMake(i*self.scrollView.bounds.size.width + i*self.spaceBetweenViews, self.scrollView.frame.size.height);
+    self.scrollView.contentSize = CGSizeMake(i*self.scrollView.bounds.size.width + i*self.spaceBetweenPages, self.scrollView.frame.size.height);
 }
 
 - (void)recalculatePageControlCenter
@@ -231,26 +205,28 @@
 
 #pragma mark Managing View Controllers
 
-- (void)addPageWithViewController:(UIViewController *)viewController
+- (void)reloadPages
 {
-    [[self mutableArrayValueForKeyPath:KEY_PATH_PAGESARRAY] addObject:viewController];
+    self.pageControl.numberOfPages = self.numberOfPages;
+    [self removeAllViewFromScrollView];
+    [self recalculateViewControllerFrames];
+}
+
+- (CGFloat)spaceBetweenPages
+{
+//    if ([self.dataSource respondsToSelector:@selector(spaceBetweenPagesForPagingViewController:)])
+//        return [self.dataSource spaceBetweenPagesForPagingViewController:self];
+    return 0;
+}
+
+- (NSUInteger)numberOfPages
+{
+    return [self.dataSource numberOfPagesInPagingViewController:self];
 }
 
 - (UIViewController *)viewControllerAtIndex:(NSUInteger)index
 {
-    if (index > self.numberOfPages || self.numberOfPages == 0) return nil;
-    return [[self mutableArrayValueForKeyPath:KEY_PATH_PAGESARRAY] objectAtIndex:index];
-}
-
-- (void)removePageAtIndex:(NSUInteger)index
-{
-    if (index > self.numberOfPages || self.numberOfPages == 0) return;
-    [[self mutableArrayValueForKeyPath:KEY_PATH_PAGESARRAY] removeObjectAtIndex:index];
-}
-
-- (UIViewController *)currentViewController
-{
-    return [self viewControllerAtIndex:self.pageControl.currentPage];
+    return [self.dataSource pagingViewController:self viewControllerAtIndex:index];
 }
 
 - (NSUInteger)currentPage
@@ -258,39 +234,10 @@
     return self.pageControl.currentPage;
 }
 
-- (void)setCurrentPage:(NSUInteger)currentPage
+- (void)removeAllViewFromScrollView
 {
-    [self scrollToPage:currentPage animated:NO];
-}
-
-- (BOOL)currentPageIsLastPage
-{
-    return self.numberOfPages - 1 == self.currentPage;
-}
-
-- (BOOL)currentPageIsFirstPage
-{
-    return self.currentPage == 0;
-}
-
-- (NSUInteger)numberOfPages
-{
-    return self.pageControl.numberOfPages;
-}
-
-- (NSUInteger)pageForViewController:(UIViewController *)viewController
-{
-    for (int i = 0; i < self.pagesArray.count; i++) {
-        if ([self.pagesArray objectAtIndex:i] == viewController)
-            return i;
-    }
-    return NSNotFound;
-}
-
-- (void)removeAllPages
-{
-    while (self.numberOfPages > 0) {
-        [self removePageAtIndex:0];
+    for (UIView *view in self.scrollView.subviews) {
+        [view removeFromSuperview];
     }
 }
 
@@ -299,7 +246,7 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     if (!self.pageControlBeingUsed){
-        CGFloat pageWidth = self.scrollView.frame.size.width + self.spaceBetweenViews;
+        CGFloat pageWidth = self.scrollView.frame.size.width + self.spaceBetweenPages;
         self.tmpPage = floor((self.scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
     }
 }
@@ -326,7 +273,7 @@
 
 - (void)scrollToPage:(NSUInteger)index animated:(BOOL)animated
 {
-    CGFloat pageWidth = self.scrollView.frame.size.width + self.spaceBetweenViews;
+    CGFloat pageWidth = self.scrollView.frame.size.width + self.spaceBetweenPages;
     [self.scrollView scrollRectToVisible:CGRectMake(index*pageWidth, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height) animated:animated];
     self.pageControl.currentPage = index;
     self.pageControlBeingUsed = YES;
