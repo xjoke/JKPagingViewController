@@ -16,6 +16,8 @@
 		366605FF15AF3C6900FD165F /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 366605FD15AF3C6900FD165F /* MainStoryboard_iPhone.storyboard */; };
 		3666060215AF3C6900FD165F /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3666060015AF3C6900FD165F /* MainStoryboard_iPad.storyboard */; };
 		3666060515AF3C6A00FD165F /* JKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3666060415AF3C6A00FD165F /* JKViewController.m */; };
+		3666060D15AF3CA200FD165F /* JKPagingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3666060C15AF3CA200FD165F /* JKPagingViewController.m */; };
+		36BDCEE715B19241008B5B26 /* LICENSE.markdown in Resources */ = {isa = PBXBuildFile; fileRef = 36BDCEE615B19241008B5B26 /* LICENSE.markdown */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,16 +25,19 @@
 		366605EB15AF3C6900FD165F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		366605ED15AF3C6900FD165F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		366605EF15AF3C6900FD165F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		366605F315AF3C6900FD165F /* JKPagingScrollView-Info.plist */ = {isa = PBXFileReference; path = "JKPagingScrollView-Info.plist"; sourceTree = "<group>"; };
+		366605F315AF3C6900FD165F /* JKPagingScrollView-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JKPagingScrollView-Info.plist"; sourceTree = "<group>"; };
 		366605F515AF3C6900FD165F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		366605F715AF3C6900FD165F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		366605F915AF3C6900FD165F /* JKPagingScrollView-Prefix.pch */ = {isa = PBXFileReference; path = "JKPagingScrollView-Prefix.pch"; sourceTree = "<group>"; };
-		366605FA15AF3C6900FD165F /* JKAppDelegate.h */ = {isa = PBXFileReference; path = JKAppDelegate.h; sourceTree = "<group>"; };
+		366605F915AF3C6900FD165F /* JKPagingScrollView-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JKPagingScrollView-Prefix.pch"; sourceTree = "<group>"; };
+		366605FA15AF3C6900FD165F /* JKAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JKAppDelegate.h; sourceTree = "<group>"; };
 		366605FB15AF3C6900FD165F /* JKAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JKAppDelegate.m; sourceTree = "<group>"; };
 		366605FE15AF3C6900FD165F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		3666060115AF3C6900FD165F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
-		3666060315AF3C6A00FD165F /* JKViewController.h */ = {isa = PBXFileReference; path = JKViewController.h; sourceTree = "<group>"; };
+		3666060315AF3C6A00FD165F /* JKViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JKViewController.h; sourceTree = "<group>"; };
 		3666060415AF3C6A00FD165F /* JKViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JKViewController.m; sourceTree = "<group>"; };
+		3666060B15AF3CA200FD165F /* JKPagingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JKPagingViewController.h; path = JKPagingScrollView/Classes/JKPagingViewController.h; sourceTree = "<group>"; };
+		3666060C15AF3CA200FD165F /* JKPagingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JKPagingViewController.m; path = JKPagingScrollView/Classes/JKPagingViewController.m; sourceTree = "<group>"; };
+		36BDCEE615B19241008B5B26 /* LICENSE.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.markdown; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +57,9 @@
 		366605DC15AF3C6900FD165F = {
 			isa = PBXGroup;
 			children = (
+				36BDCEE615B19241008B5B26 /* LICENSE.markdown */,
+				3666060B15AF3CA200FD165F /* JKPagingViewController.h */,
+				3666060C15AF3CA200FD165F /* JKPagingViewController.m */,
 				366605F115AF3C6900FD165F /* JKPagingScrollView */,
 				366605EA15AF3C6900FD165F /* Frameworks */,
 				366605E815AF3C6900FD165F /* Products */,
@@ -155,6 +163,7 @@
 				366605F615AF3C6900FD165F /* InfoPlist.strings in Resources */,
 				366605FF15AF3C6900FD165F /* MainStoryboard_iPhone.storyboard in Resources */,
 				3666060215AF3C6900FD165F /* MainStoryboard_iPad.storyboard in Resources */,
+				36BDCEE715B19241008B5B26 /* LICENSE.markdown in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,6 +177,7 @@
 				366605F815AF3C6900FD165F /* main.m in Sources */,
 				366605FC15AF3C6900FD165F /* JKAppDelegate.m in Sources */,
 				3666060515AF3C6A00FD165F /* JKViewController.m in Sources */,
+				3666060D15AF3CA200FD165F /* JKPagingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,6 +299,7 @@
 				3666060A15AF3C6A00FD165F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
